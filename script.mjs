@@ -1,16 +1,20 @@
 import { MailtrapClient } from "mailtrap";
 import Parser from "rss-parser";
+import dotenv from "dotenv";
+
+dotenv.config();
+
+const RSS_FEED_URL = process.env.RSS_FEED_URL;
+const token = process.env.TOKEN;
 
 let targetData = {};
 
 let parser = new Parser();
 
 async function get_Data() {
-  let feed = await parser.parseURL(
-    "https://rss.nytimes.com/services/xml/rss/nyt/World.xml"
-  );
+  let feed = await parser.parseURL(RSS_FEED_URL);
   // console.log(feed);
-  const TOKEN = "236660ef26d6154be253fe3ef86048b4";
+  const TOKEN = token;
   const ENDPOINT = "https://send.api.mailtrap.io/";
 
   const client = new MailtrapClient({ endpoint: ENDPOINT, token: TOKEN });
