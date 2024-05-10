@@ -30,7 +30,7 @@ async function get_Data() {
   ];
 
   feed.items.forEach((item) => {
-    if (item.title.includes("Middle East Crisis")) {
+    if (item.title.includes("Middle East")) {
       targetData.title = item.title;
       targetData.publisher = item.creator;
       targetData.pubDate = item.pubDate;
